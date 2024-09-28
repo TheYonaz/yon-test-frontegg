@@ -6,7 +6,6 @@ function ActiveTenants() {
   const [tenants, setTenants] = useState([]);
   const [error, setError] = useState(null);
 
-  // Function to fetch tenant details using the tenant ID
   const fetchTenantDetails = async (tenantId) => {
     const accessToken = user?.accessToken;
     const options = {
@@ -21,7 +20,7 @@ function ActiveTenants() {
       const response = await fetch(`https://api.frontegg.com/tenants/resources/tenants/v1/${tenantId}`, options);
       if (response.ok) {
         const tenantData = await response.json();
-        return tenantData.name; // Return tenant name if available
+        return tenantData.name; 
       } else {
         console.error("Failed to fetch tenant details");
         return null;
@@ -55,7 +54,7 @@ function ActiveTenants() {
           
           if (response.ok) {
             const responseData = await response.json();
-            // Fetch tenant details for each active tenant
+            
             const tenantPromises = responseData.applicationActiveTenants.map(async (tenant) => {
               const tenantName = await fetchTenantDetails(tenant.tenantId);
               return {

@@ -2,14 +2,13 @@ import { useAuth, ContextHolder } from "@frontegg/react";
 
 function TenantSwitcher() {
   const { user } = useAuth();
-  const tenants = user?.tenants || [];  // Assuming the tenants are stored in the user object
-
+  const tenants = user?.tenants || [];  
   const switchTenant = (tenantId) => {
     const context = ContextHolder.getContext();
     const baseUrl = context.baseUrl;
     console.log(user);
 
-    // Redirect to the selected tenant
+   
     window.location.href = `${baseUrl}/oauth/switch-tenant?tenantId=${tenantId}&post_switch_redirect_uri=${window.location.href}`;
   };
 
